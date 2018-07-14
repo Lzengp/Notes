@@ -10,3 +10,11 @@
 5. MapListHandler: 把结果集转为一个 Map 对象的集合, 并返回.。Map的键: 列名(而非列的别名), 值: 列的值。
 
 6. ScalarHandler: 可以返回指定列的一个值或返回一个统计函数的值，比如count(1)。
+
+## CommonUtils
+
+CommonUtils类就两个方法：
+
+lString uuid()：生成长度32的随机字符，通常用来做实体类的ID。底层使用了UUID类完成；
+
+ toBean(Map, Class<T>)：把Map转换成指定类型的Bean对象。通常用来获取表单数据（request.getParameterMap()）封装到JavaBean中，底层使用了common-beanutils。注意，本方法要求map中键的名称要与Bean的属性名称相同才能完成映射，否则不能完成映射。
