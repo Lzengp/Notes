@@ -1,37 +1,12 @@
-## Welcome to GitHub Pages
+## dbutils使用---QueryRunner、BeanListHandler、BeanHandler、MapListHandler、MapHandler、ScalarHandler
+1. ResultSetHandler 的作用: QueryRunner 的 query 方法的返回值最终取决于 query 方法的 ResultHandler 参数的 hanlde 方法的返回值。
 
-You can use the [editor on GitHub](https://github.com/Lzengp/Notes/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+2. BeanListHandler: 把结果集转为一个 Bean 的 List, 并返回.。Bean的类型在创建 BeanListHanlder对象时以 Class对象的方式传入，可以适应列的别名来映射 JavaBean 的属性 名:  String sql = "SELECT id, name customerName, email, birth " + "FROM customers WHERE id = ?"; BeanListHandler(Class<T> type)。
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+3. BeanHandler: 把结果集转为一个 Bean,并返回.。Bean的类型在创建BeanHandler 对象时以 Class 对象的方式传入 BeanHandler(Class<T> type)。
 
-### Markdown
+4. MapHandler: 把结果集转为一个 Map 对象, 并返回。若结果集中有多条记录, 仅返回 第一条记录对应的Map对象.。Map的键: 列名(而非列的别名), 值: 列的值。
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+5. MapListHandler: 把结果集转为一个 Map 对象的集合, 并返回.。Map的键: 列名(而非列的别名), 值: 列的值。
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Lzengp/Notes/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+6. ScalarHandler: 可以返回指定列的一个值或返回一个统计函数的值，比如count(1)。
